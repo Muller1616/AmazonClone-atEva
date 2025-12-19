@@ -4,6 +4,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { CiLocationOn } from "react-icons/ci";
 import classes from "./header.module.css";
 import LowerHeader from "./LowerHeader";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -12,12 +13,12 @@ const Header = () => {
         <div className={classes.header_container}>
           {/* logo */}
           <div className={classes.logo_container}>
-            <a href="#">
+            <Link to="/">
               <img
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
                 alt="amazon logo"
               />
-            </a>
+            </Link>
 
             <div className={classes.delivery}>
               {/* delivery */}
@@ -44,7 +45,7 @@ const Header = () => {
           <div className={classes.order_container}>
             {/* right side link */}
 
-            <a href="" className={classes.language}>
+            <Link to = "#" className={classes.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg/2560px-Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg.png"
                 alt=""
@@ -52,23 +53,23 @@ const Header = () => {
               <select name="" id="">
                 <option>EN</option>
               </select>
-            </a>
+            </Link>
             {/* three components */}
-            <a href="/">
+            <Link to = "/signup">
               <p>Sign In</p>
               <span>Account & Lists</span>
-            </a>
+            </Link>
             {/* orders */}
-            <a href="/">
+            <Link to = "/orders">
               <p>returns</p>
               <span>& Orders</span>
-            </a>
+            </Link>
             {/* carts */}
-            <a href="#" className={classes.cart}>
+            <Link to = "/cart" className={classes.cart}>
               <FaCartShopping size={25} />
               {/* icon */}
               <span>0</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
