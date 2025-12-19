@@ -5,15 +5,17 @@ import Payment from "./Pages/Payment/Payment";
 import Orders from "./Pages/Orders/Orders";
 import Signup from "./Pages/Auth/Signup";
 import Cart from "./Pages/Cart/Cart";
+import Results from "./Pages/Results/Results";
 
 const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
