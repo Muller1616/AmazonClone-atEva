@@ -25,7 +25,7 @@ const Product = () => {
     {
         isLoading?(<Loader />) :( <div className={classes.product_container}>
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} renderAdd={true}/>
       ))}
     </div>)
     }

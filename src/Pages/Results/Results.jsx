@@ -10,18 +10,18 @@ import Loader from "../../components/Loader/Loader";
 const Results = () => {
   const { categoryName } = useParams();
   const [results, setResults] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     axios
       .get(`${productUrl}/products/category/${categoryName}`)
       .then((res) => {
         setResults(res.data);
-        isLoading(false)
+        isLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        isLoading(false)
+        isLoading(false);
       });
   }, []);
   return (
@@ -30,14 +30,15 @@ const Results = () => {
         <h1 style={{ padding: "30px" }}>Results</h1>
         <p style={{ padding: "30px" }}>Category / {categoryName}</p>
         <br />
-        {
-          isLoading ? (<Loader />) : (<div className={classes.products_container}>
-          {results?.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>)
-        }
-        
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className={classes.products_container}>
+            {results?.map((product) => (
+              <ProductCard key={product.id} product={product} renderAdd={true} />
+            ))}
+          </div>
+        )}
       </div>
     </Layout>
   );
