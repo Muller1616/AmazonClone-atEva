@@ -8,6 +8,9 @@
     width: 100px !important;
 }
 
+.container div{
+  height: auto !important;
+}
 /* LEFT SIDE */
 .cart_container {
   padding: 20px;
