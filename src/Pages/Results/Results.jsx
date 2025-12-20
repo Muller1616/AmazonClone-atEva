@@ -26,9 +26,9 @@ const Results = () => {
         <p style={{ padding: "30px" }}>Category / {categoryName}</p>
         <br />
         <div className={classes.products_container}>
-          {results?.map((product) => {
-            <ProductCard key={product.id} product={product} />;
-          })}
+          {results?.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
     </Layout>
