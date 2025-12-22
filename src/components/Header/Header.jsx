@@ -10,7 +10,7 @@ import { DataContext } from "../DataProvider/DataProvider";
 const Header = () => {
   const [{basket},dispatch] = useContext(DataContext)
   const totalItem = basket?.reduce((amount,item)=>{
-    return item.amount + amount
+    return (item.amount || 0) + amount
   },0)
   return (
     <section className={classes.fixed}>
