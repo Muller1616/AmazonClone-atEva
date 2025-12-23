@@ -60,7 +60,7 @@ const Header = () => {
               </select>
             </Link>
             {/* three components */}
-            <Link to = "/signup">
+            <Link to = "/auth">
               <p>Sign In</p>
               <span>Account & Lists</span>
             </Link>
