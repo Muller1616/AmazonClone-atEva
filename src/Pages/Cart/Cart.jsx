@@ -75,7 +75,7 @@ const Cart = () => {
                 <small>This order contains a gift</small>
               </span>
 
-              <Link to="/payments" className={classes.checkout}>
+              <Link to="/payment" className={classes.checkout}>
                 Continue to checkout
               </Link>
             </div>

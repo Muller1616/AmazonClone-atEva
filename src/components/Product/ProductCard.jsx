@@ -13,9 +13,9 @@ const ProductCard = ({
   renderDesc,
   renderAdd,
 }) => {
+  if(!product) return null;
   const { image, title, id, rating, price, description } = product;
   const [state, dispatch] = useContext(DataContext);
-  console.log(state);
 
   const addToCart = () => {
     dispatch({
@@ -40,7 +40,7 @@ const ProductCard = ({
         )}
         <div className={classes.rating}>
           {/* rating */}
-          <Rating value={rating?.rate || 0} precision={0.1} />
+          <Rating value={rating?.rate || 0} precision={0.1} readOnly />
           {/* count */}
           <small>{rating?.count || 0}</small>
         </div>

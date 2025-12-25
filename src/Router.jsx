@@ -7,6 +7,10 @@ import Cart from "./Pages/Cart/Cart";
 import Results from "./Pages/Results/Results";
 import ProductDetail from './Pages/ProductDetail/ProductDetail';
 import Auth from "./Pages/Auth/Auth";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_51ShVBvFVwI4idh01TlM1nxakiyrAfucVXSgrUessrZpt8QdJVvr48kgo0F6u47cC5OdWMceRdlXd4JquFdpAF7SA001rkjIddC');
 
 const Routing = () => {
   return (
@@ -14,7 +18,11 @@ const Routing = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment" element={
+          <Elements stripe={stripePromise}>
+            <Payment />
+          </Elements>
+        } />
         <Route path="/orders" element={<Orders />} />
         <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
