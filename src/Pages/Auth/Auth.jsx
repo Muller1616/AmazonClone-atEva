@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./signup.module.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate,useLocation } from "react-router-dom";
 import classes from "./signup.module.css";
 import { auth } from "../../Utility/firebase";
 import {
@@ -19,6 +19,8 @@ const Auth = () => {
   const [message, setMessage] = useState("");
   const [{ user }, dispatch] = useContext(DataContext);
   const navigate = useNavigate();
+  const navStateData = useLocation();
+  console.log(navStateData)
 
   const [loading, setLoading] = useState({
     signin: false,
@@ -44,7 +46,7 @@ const Auth = () => {
           setMessage("Sign in successful");
 
           setLoading({ ...loading, signin: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
 
           // ...
         })
@@ -99,6 +101,21 @@ const Auth = () => {
 
       <div className={classes.login_container}>
         <h1>Sign In</h1>
+        {
+          navStateData?.state?.msg && (
+            <small style={
+              {
+                padding:"5px",
+                textAlign:"center",
+                color:"red",
+                fontWeight:"bold"
+              }
+            }>
+              {navStateData?.state?.msg}
+              
+            </small>
+          )
+        }
         <form action="">
           <div>
             <label htmlFor="email">Email</label>
