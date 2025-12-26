@@ -53,3 +53,21 @@
 .payment_details button:hover{
     background-color: #f0c14b;
 }
+
+.processing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgb(52, 52, 52);
+}
+
+/* responsive */
+@media screen and (max-width: 768px) {
+    .flex{
+        flex-direction: column;
+    }
+    .flex h3{
+        min-width: auto;
+    }
+}

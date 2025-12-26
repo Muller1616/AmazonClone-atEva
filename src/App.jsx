@@ -1,38 +1,25 @@
-import React, { useContext, useEffect } from 'react'
-// import Header from './components/Header/Header'
-// import Carousel from './components/Carousel/Carousel'
-// import Category from './components/Category/Category'
-// import Product from './components/Product/Product'
-import Routing from './Router'
-import { DataContext } from './components/DataProvider/DataProvider';
-import { Type } from './Utility/action.type';
-import { auth } from './Utility/firebase';
+import React, { useContext, useEffect } from "react";
+import Routing from "./Router";
+import { DataContext } from "./components/DataProvider/DataProvider";
+import { Type } from "./Utility/action.type";
+import { auth } from "./Utility/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const App = () => {
-  const [{user}, dispatch] = useContext(DataContext);
-  useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        // user is logged in
-        dispatch({
-          type: Type.SET_USER,
-          user: authUser,
-        });
-      } else {
-        // user is logged out
-        dispatch({
-          type: Type.SET_USER,
-          user: null,
-        });
-      }
-    });
-  }, [])
-  return (
-    <>
-    <Routing/>
-    
-    </>
-  )
-}
+  const [, dispatch] = useContext(DataContext);
 
-export default App
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      dispatch({
+        type: Type.SET_USER,
+        user: authUser ? authUser : null,
+      });
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
+
+  return <Routing />;
+};
+
+export default App;
