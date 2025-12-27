@@ -12,7 +12,7 @@ import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket },dispatch] = useContext(DataContext);
 
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
@@ -99,6 +99,9 @@ const Payment = () => {
           created: paymentIntent.created,
         }
       );
+      // 4. clear basket
+      dispatch({type:"EMPTY_BASKET"});
+
 
       setProcessing(false);
       navigate("/orders",{state:{msg:"You have placed in the order!"}})
